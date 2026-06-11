@@ -4,7 +4,6 @@ __pycache__/
 node_modules/
 dist/
 tools/
-outputs/*
 !outputs/.gitkeep
 tmp/*
 !tmp/.gitkeep
