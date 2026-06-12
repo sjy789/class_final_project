@@ -89,6 +89,13 @@ Flatten → Dropout(0.15) → Linear(128→1)
 
 **总结：** 两个子模型在候选 4、5 上出现明显排名分歧。由于融合权重为 TinyOPAConvNet × 0.72 + 特征模型 × 0.28，最终排序以 CNN 判断为主导。候选 5 的案例尤为典型：纯规则特征认为该位置最差，但 CNN 从像素合成质量判断其最优，融合分数将其保留在合理区间，体现了双模型互补的必要性。
 
+**7 训练曲线：**
+
+![alt text](training_curves.png)
+
+> *TinyOPAConvNet 12 轮训练的 Loss / Accuracy / F1 / Balanced Accuracy 曲线。
+> 验证 Loss 在第 12 轮降至最低（0.686），验证 Balanced Accuracy 稳定在 0.73 附近，模型未出现明显过拟合。*
+
 ---
 
 ### 1.2 模型解释
@@ -182,7 +189,8 @@ score = fallback_score
 ```
 
 **管线流程图：**
-![alt text](pipeline_image.png)
+
+<img src="pipeline_image.png" alt="管线流程图" width="70%">
 
 ---
 
@@ -218,13 +226,16 @@ score = fallback_score
 
 **案例 A：效果较好的放置（合理位置）**
 
-![alt text](../outputs/20260610-103323/top_composite.png)
-
-> *合成图*
-
-![alt text](../outputs/20260610-103323/explanation_heatmap.png)
-
-> *热力图*
+<table>
+  <tr>
+    <td><img src="../outputs/20260610-103323/top_composite.png" alt="合成图"></td>
+    <td><img src="../outputs/20260610-103323/explanation_heatmap.png" alt="热力图"></td>
+  </tr>
+  <tr>
+    <td align="center"><em>合成图</em></td>
+    <td align="center"><em>热力图</em></td>
+  </tr>
+</table>
 
 **模型输出：**
 
@@ -258,13 +269,16 @@ score = fallback_score
 
 **案例 B：边界案例（可接受范围）**
 
-![alt text](../outputs/20260611-145520/top_composite.png)
-
-> *合成图*
-
-![alt text](../outputs/20260611-145520/explanation_heatmap.png)
-
-> *热力图*
+<table>
+  <tr>
+    <td><img src="../outputs/20260611-145520/top_composite.png" alt="合成图"></td>
+    <td><img src="../outputs/20260611-145520/explanation_heatmap.png" alt="热力图"></td>
+  </tr>
+  <tr>
+    <td align="center"><em>合成图</em></td>
+    <td align="center"><em>热力图</em></td>
+  </tr>
+</table>
 
 **模型输出：**
 
@@ -299,13 +313,16 @@ score = fallback_score
 
 **案例 C：效果较差的放置**
 
-![alt text](../outputs/20260611-145910/top_composite.png)
-
-> *合成图*
-
-![alt text](../outputs/20260611-145910/explanation_heatmap.png)
-
-> *热力图*
+<table>
+  <tr>
+    <td><img src="../outputs/20260611-145910/top_composite.png" alt="合成图"></td>
+    <td><img src="../outputs/20260611-145910/explanation_heatmap.png" alt="热力图"></td>
+  </tr>
+  <tr>
+    <td align="center"><em>合成图</em></td>
+    <td align="center"><em>热力图</em></td>
+  </tr>
+</table>
 
 **模型输出：**
 
@@ -413,16 +430,20 @@ useEffect(() => {
 
 **交互截图：**
 
-![alt text](manual_score_negative.png)
-
-> *拖拽实时评分-低分位置效果图*
-
-![alt text](manual_score_positive.png)
-
-> *拖拽实时评分-高分位置效果图*
+<table>
+  <tr>
+    <td><img src="manual_score_negative.png" alt="低分位置"></td>
+    <td><img src="manual_score_positive.png" alt="高分位置"></td>
+  </tr>
+  <tr>
+    <td align="center"><em>拖拽实时评分-低分位置效果图</em></td>
+    <td align="center"><em>拖拽实时评分-高分位置效果图</em></td>
+  </tr>
+</table>
 
 
 **功能录屏：**
+
 ![alt text](real_time_score.gif)
 
 > *拖拽+实时评分操作录屏*
@@ -458,9 +479,9 @@ React 前端渲染结果
 
 | 成员 | 负责内容 |
 |------|---------|
-| 施佳瑜 | *待补充* |
-| 郭曦汝 | *待补充* |
-| 贺吾乐 | *待补充* |
+| 施佳瑜 | 模型训练，前后端搭建 |
+| 郭曦汝 | 模型测试，报告撰写 |
+| 贺吾乐 | 项目梳理，ppt撰写 |
 
 **运行方式：**
 
